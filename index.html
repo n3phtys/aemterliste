@@ -10,8 +10,6 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-
-
     <title>AVH Portal</title>
 
 </head>
@@ -21,15 +19,9 @@
 <div class="container">
 
 
-
-    <!-- page content -->
-
-
-
     <h1>AVH Portal</h1>
 
     <p>Willkommen auf dem Selbstbedienungsportal des Akademischen Verein Hütte</p>
-
 
 
     <h2>Reservierungen</h2>
@@ -45,7 +37,6 @@
     </ul>
 
 
-
     <h2>Sonstige Links</h2>
 
     <ul>
@@ -54,15 +45,16 @@
 
         <li><a href="https://server30.der-moderne-verein.de/portal/index.php">SEWOBE Mitgliederportal</a></li>
 
-        <li><a href="https://server30.der-moderne-verein.de/module/login.php">SEWOBE Ämterportal (nur für relevante Amtsträger)</a></li>
+        <li><a href="https://server30.der-moderne-verein.de/module/login.php">SEWOBE Ämterportal (nur für relevante
+            Amtsträger)</a></li>
 
     </ul>
 
 
-
     <h2>Ämterliste</h2>
 
-    <p>Diese Liste wird auf Basis der SEWOBE-Datenbank jede Nacht neu erstellt. Unbesetzte Ämter werden nicht angezeigt.</p>
+    <p>Diese Liste wird auf Basis der SEWOBE-Datenbank jede Nacht neu erstellt. Unbesetzte Ämter werden nicht
+        angezeigt.</p>
 
     <div id="aemterliste">
 
@@ -72,7 +64,9 @@
 
     <hr>
     <h2>Mailinglisten / aktive Weiterleitungen</h2>
-    <p>Dies sind die aktiven Mail-Weiterleitungen auf dem av-huette-Mailserver. Diese Liste ist im Format "x:y" wobei alle Mails an "x@av-huette.de" an Adresse "y" weitergeleitet werden. Diese Liste wird jeden Tag um 2 Uhr nachts automatisch neu generiert auf Basis der SEWOBE Datenbank.</p>
+    <p>Dies sind die aktiven Mail-Weiterleitungen auf dem av-huette-Mailserver. Diese Liste ist im Format "x:y" wobei
+        alle Mails an "x@av-huette.de" an Adresse "y" weitergeleitet werden. Diese Liste wird jeden Tag um 2 Uhr nachts
+        automatisch neu generiert auf Basis der SEWOBE Datenbank.</p>
     <pre id="mailstxt" style="white-space: pre-wrap; overflow-x: scroll;">
 		TODO: Mails zeigen
 	</pre>
@@ -80,220 +74,29 @@
 
     <hr>
     <h2>Mailadressen der Ämter</h2>
-    <p>Dies sind die aktiven Mail-Weiterleitungen der Ämter auf dem av-huette-Mailserver. Diese Liste ist im Format "x:y" wobei alle Mails an "x@av-huette.de" an Adresse "y" weitergeleitet werden. Diese Liste wird jeden Tag um 2 Uhr nachts automatisch neu generiert auf Basis der SEWOBE Datenbank.</p>
+    <p>Dies sind die aktiven Mail-Weiterleitungen der Ämter auf dem av-huette-Mailserver. Diese Liste ist im Format
+        "x:y" wobei alle Mails an "x@av-huette.de" an Adresse "y" weitergeleitet werden. Diese Liste wird jeden Tag um 2
+        Uhr nachts automatisch neu generiert auf Basis der SEWOBE Datenbank.</p>
     <pre id="aemtermailstxt" style="white-space: pre-wrap; overflow-x: scroll;">
 		TODO: Mails zeigen
 	</pre>
 
     <h2>Aktive Mailman-Verteiler</h2>
-    <p>Dies sind die aktiven Mailman-Verteilerlisten ( = was für Verteiler gibt es überhaupt) auf dem av-huette-Mailserver. Diese Liste ist im Format "x:y" wobei alle Mails an "x@av-huette.de" an Adresse "y" weitergeleitet werden.</p>
+    <p>Dies sind die aktiven Mailman-Verteilerlisten ( = was für Verteiler gibt es überhaupt) auf dem
+        av-huette-Mailserver. Diese Liste ist im Format "x:y" wobei alle Mails an "x@av-huette.de" an Adresse "y"
+        weitergeleitet werden.</p>
     <pre id="mailmanmailstxt" style="white-space: pre-wrap; overflow-x: scroll;">
                 TODO: Mails zeigen
         </pre>
 
 
     <h2>Aktive Biernamen-Mailadressen</h2>
-    <p>Dies sind die aktiven Biernamen-Weiterleitungen auf dem av-huette-Mailserver. Diese Liste ist im Format "x:y" wobei alle Mails an "x@av-huette.de" an Adresse "y" weitergeleitet werden. Diese Liste wird jeden Tag um 2 Uhr nachts automatisch neu generiert auf Basis der SEWOBE Datenbank.</p>
+    <p>Dies sind die aktiven Biernamen-Weiterleitungen auf dem av-huette-Mailserver. Diese Liste ist im Format "x:y"
+        wobei alle Mails an "x@av-huette.de" an Adresse "y" weitergeleitet werden. Diese Liste wird jeden Tag um 2 Uhr
+        nachts automatisch neu generiert auf Basis der SEWOBE Datenbank.</p>
     <pre id="biernamenmailstxt" style="white-space: pre-wrap; overflow-x: scroll;">
                 TODO: Mails zeigen
         </pre>
-
-
-
-    <script>
-
-        //TODO: aemterliste per XMLHTTPRequest abrufen, json parsen, zu Table formatieren, und in id=aemterliste reinschreiben
-
-        function loadXMLDoc() {
-
-            var xhttp = new XMLHttpRequest();
-
-            xhttp.onreadystatechange = function() {
-
-                if (this.readyState == 4 && this.status == 200) {
-
-
-
-                    var obj = JSON.parse(this.responseText);
-
-
-
-                    var table_begin = "<div class='table-responsive'>"+
-
-                        "<table class='table'>" +
-
-                        "<thead>" +
-
-                        "<tr>" +
-
-                        "<th>Amt</th>" +
-
-                        "<th>Amtsträger</th>" +
-
-                        "<th>Neuwahl</th>" +
-
-                        "</tr>" +
-
-                        "</thead>" +
-
-                        "<tbody>";
-
-
-
-
-
-                    var table_end = "</tbody>" + "</table>" + "</div>";
-
-
-
-                    var middle_arr = [];
-
-
-
-
-
-                    console.log(JSON.stringify(obj));
-
-
-
-                    for (var key in obj) {
-
-
-
-                        var amt = obj[key].amtsname;
-
-
-
-                        var person = obj[key].DATENSATZ;
-
-
-
-                        var name = person["VORNAME-PRIVATPERSON"] + " (" + person["BIERNAME"] + ") " + person["NACHNAME-PRIVATPERSON"];
-
-                        var neuwahl = person.NEUWAHL + " " + person.JAHR;
-
-
-
-                        var aemter = person.AMT.split(",");
-
-                        for (i = 0; i < aemter.length; i++) {
-
-                            var amt = aemter[i].trim();
-                            if (amt.length > 0 && name.length > 0) { //zu grob: && person.NEUWAHL.length > 0 && person.JAHR > 0) {
-                                middle_arr.push(`<tr><td>${amt}</td><td>${name}</td><td>${neuwahl}</td></tr>`);
-                            } else {
-                                console.log("nonsensical line found:\n"+`<tr><td>${amt}</td><td>${name}</td><td>${neuwahl}</td></tr>`)
-                            }
-                        }
-
-                    }
-
-                    middle_arr.sort();
-
-                    var middle = "";
-
-                    for (i = 0; i < middle_arr.length; i++) {
-
-                        console.log(middle_arr[i]);
-
-                        middle += middle_arr[i] + "\n";
-
-                    }
-
-
-
-                    document.getElementById("aemterliste").innerHTML =  table_begin + middle + table_end;
-
-
-
-                }
-
-            };
-
-            xhttp.open("GET", "aemter.json", true);
-
-            xhttp.send();
-
-        }
-
-
-        function loadMailsDoc() {
-
-            var xhttp = new XMLHttpRequest();
-
-            xhttp.onreadystatechange = function() {
-
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("mailstxt").innerHTML =  this.responseText;
-                }
-
-            };
-
-            xhttp.open("GET", "mails.txt", true);
-
-            xhttp.send();
-
-        }
-
-        function loadAemtermailsDoc() {
-
-            var xhttp = new XMLHttpRequest();
-
-            xhttp.onreadystatechange = function() {
-
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("aemtermailstxt").innerHTML =  this.responseText;
-                }
-
-            };
-
-            xhttp.open("GET", "aemtermails.txt", true);
-
-            xhttp.send();
-
-
-
-            var xhttp2 = new XMLHttpRequest();
-
-            xhttp2.onreadystatechange = function() {
-
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("biernamenmailstxt").innerHTML =  this.responseText;
-                }
-
-            };
-
-            xhttp2.open("GET", "biernamenmails.txt", true);
-
-            xhttp2.send();
-
-            var xhttp3 = new XMLHttpRequest();
-
-            xhttp3.onreadystatechange = function() {
-
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("mailmanmailstxt").innerHTML =  this.responseText;
-                }
-
-            };
-
-            xhttp3.open("GET", "mailmanmails.txt", true);
-
-            xhttp3.send();
-
-
-        }
-
-
-
-
-
-        loadXMLDoc();
-        loadMailsDoc();
-        loadAemtermailsDoc();
-
-    </script>
-
 
 
 </div>
@@ -302,7 +105,7 @@
 <script type="text/javascript">
     // <![CDATA[  <-- For SVG support
     if ('WebSocket' in window) {
-        (function() {
+        (function () {
             function refreshCSS() {
                 var sheets = [].slice.call(document.getElementsByTagName("link"));
                 var head = document.getElementsByTagName("head")[0];
@@ -317,10 +120,11 @@
                     head.appendChild(elem);
                 }
             }
+
             var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
             var address = protocol + window.location.host + window.location.pathname + '/ws';
             var socket = new WebSocket(address);
-            socket.onmessage = function(msg) {
+            socket.onmessage = function (msg) {
                 if (msg.data == 'reload') window.location.reload();
                 else if (msg.data == 'refreshcss') refreshCSS();
             };
@@ -330,8 +134,6 @@
     // ]]>
 </script>
 </body>
-
-
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
