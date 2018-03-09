@@ -52,7 +52,7 @@ typealias Aemter27JSON = Map<String, AemterContainer>
 
 fun convertSinglePerson(amt: String, person: DatensatzContainer?) : String {
     val name = if (person != null) person.getFullNameAnchor() else "vakant"
-    val neuwahl = if (person != null) person.getNeuwahl() + person.getJahr() else "N/A"
+    val neuwahl = if (person != null) person.getNeuwahl() + " " + person.getJahr() else "N/A"
     return "<tr><td>${amt}</td><td>${name}</td><td>${neuwahl}</td></tr>\n"
 }
 
