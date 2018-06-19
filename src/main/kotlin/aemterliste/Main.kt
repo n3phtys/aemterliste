@@ -32,7 +32,7 @@ data class DatensatzContainer(val DATENSATZ: Json) {
     inline fun getAemter(): List<String> = (DATENSATZ.get("AMT")!! as String).split(",").map { it.trim() }
     inline fun getJahr(): String = DATENSATZ.get("JAHR")!! as String
     inline fun getNeuwahl(): String = DATENSATZ.get("NEUWAHL")!! as String
-    inline fun getEmail(): String = DATENSATZ.get("EMAIL")!! as String
+    inline fun getEmail(): String = DATENSATZ.get("E-MAIL")!! as String
     inline fun getVorname(): String = DATENSATZ.get("VORNAME-PRIVATPERSON")!! as String
     inline fun getNachname(): String = DATENSATZ.get("NACHNAME-PRIVATPERSON")!! as String
     inline fun getBiername(): String = DATENSATZ.get("BIERNAME")!! as String
