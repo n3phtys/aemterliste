@@ -6,6 +6,8 @@ WORKDIR /app
 
 ADD . /app
 
+RUN chmod 755 ./gradlew
+
 RUN ./gradlew build
 
 WORKDIR /usr/share/nginx/html
