@@ -17,7 +17,7 @@ RUN cp /app/index.html /usr/share/nginx/html/index.html
 
 FROM nginx:mainline-alpine
 
-RUN apk add --no-cache curl
+RUN apk add --no-cache curl cron
 
 WORKDIR /usr/share/nginx/html
 
@@ -41,7 +41,7 @@ RUN /usr/bin/crontab /crontab
 
 RUN ls -la /usr/share/nginx/html
 
-RUN /usr/sbin/crond -f -l 8 &
+# RUN /usr/sbin/crond -f -l 8 &
 
 WORKDIR /app
 

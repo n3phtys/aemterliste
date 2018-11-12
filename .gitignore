@@ -11,3 +11,6 @@ mails.txt
 mailmanmails.txt
 aemter27.json
 run_container.sh
+docker-compose.yml
+krese.env
+import-20180826.sql
